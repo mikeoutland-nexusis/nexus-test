@@ -18,17 +18,9 @@ user = 'admin'
 password = 'admin'
 auth = (user, password)
 flow = url + 'statistics/default/flow'
-setFlow = url + 'flowprogrammer/{containerName}/node/{nodeType}/{nodeId}/staticFlow/{name}'
-switchId = list()
-nodeType = list()
-responses = list()
-
-resp = requests.get(flow, auth=auth)
-data = json.loads(resp.text)
-print (data)
-
 
 def getSwitchIds(dataDict):
+    switchId = list()
     mylist = dataDict['flowStatistics']
     for i in range(len(mylist)):
         mylist1 =  mylist[i]
@@ -36,17 +28,15 @@ def getSwitchIds(dataDict):
     return switchId
 
 def getNodeTypes(dataDict):
+    nodeType = list()
     mylist = dataDict['flowStatistics']
     for i in range(len(mylist)):
         mylist1 =  mylist[i]
         nodeType.insert(i, mylist1['node']['type'])
     return nodeType
 
-print (getSwitchIds(data))
-print (getNodeTypes(data))
-
-
 def putFlow(nodeTypes, switchIds, name):
+    responses = list()
     for i in range(len(nodeTypes)):
         jsonData = { 
                 "installInHw":"false",
@@ -72,4 +62,10 @@ def putFlow(nodeTypes, switchIds, name):
 
     return responses
 
+
+resp = requests.get(flow, auth=auth)
+data = json.loads(resp.text)
+print (data)
+print (getSwitchIds(data))
+print (getNodeTypes(data))
 print (putFlow(getNodeTypes(data), getSwitchIds(data), 'flow'))
