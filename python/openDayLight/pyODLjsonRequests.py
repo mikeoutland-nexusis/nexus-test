@@ -6,6 +6,7 @@ Created on Nov 6, 2013
 #!/usr/bin/python
 # test app for ODL flow control in JSON
 # REST api for ODL can be found here https://wiki.opendaylight.org/view/OpenDaylight_Controller:REST_Reference_and_Authentication
+# Requires requests object to be installed.  http://www.python-requests.org/en/latest/user/install/#install
 
 import json
 import requests
