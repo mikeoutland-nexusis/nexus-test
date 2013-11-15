@@ -10,7 +10,10 @@ class odlSwitch:
     '''
     classdocs
     '''
+    data = ''
     
+    def getFlowStatJson(self):
+        return self.data
     
     def getActiveHosts(self, restUrl, auth):
         response = requests.get((restUrl + "hosttracker/default/hosts/active"), auth=auth)
@@ -71,5 +74,8 @@ class odlSwitch:
         password = 'admin'
         global auth 
         auth = (user, password)
+        flow = url + 'statistics/default/flow'
+        resp = requests.get(flow, auth=auth)
+        self.data = json.loads(resp.text)
 
         
