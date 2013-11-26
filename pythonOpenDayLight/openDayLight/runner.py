@@ -6,6 +6,8 @@ Created on Nov 14, 2013
 
 #In mininet i'm using the following config:
 #    mn --topo single,3 --mac --switch ovsk --controller=remote,ip=10.0.2.2,port=6633
+#testing new gerrit
+
 from pythonOpenDayLight.openDayLight import odlSwitch
 
 switch = odlSwitch.odlSwitch('http://127.0.0.1:8080/controller/nb/v2/')
