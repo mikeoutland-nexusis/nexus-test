@@ -11,8 +11,9 @@ class odlSwitch:
     classdocs
     '''
     data = ''
-    global url
-    global auth
+    url = ''
+    auth = ('','')
+    
     
     def getFlowStatJson(self):
         return self.data
@@ -70,6 +71,8 @@ class odlSwitch:
         '''
         Constructor
         ''' 
+        global url
+        global auth
         url = baseUrl
         user = 'admin'
         password = 'admin' 
