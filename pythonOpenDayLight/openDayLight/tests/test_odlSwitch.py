@@ -12,7 +12,7 @@ class Test(unittest.TestCase):
     defaultFlowStatJson={}
     switchList = []
     typeList = []
-    testBaseUrl = 'http://127.0.0.1:8080/controller/nb/v2/'
+    testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
     
     def setUp(self):
         self.defaultFlowStatJson = {u'flowStatistics': [{u'node': {u'type': u'OF', u'id': u'00:00:00:00:00:00:00:01'}, u'flowStatistic': []}]}
