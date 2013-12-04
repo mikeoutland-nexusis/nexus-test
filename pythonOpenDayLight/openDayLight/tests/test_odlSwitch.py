@@ -36,11 +36,11 @@ class Test(unittest.TestCase):
         
     def testPutFlow(self):
         switch = odlSwitch.odlSwitch(self.testBaseUrl)
-        self.assertEquals(switch.putFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0', '10.0.0.1', 1, 2), 'Success')
+        self.assertEquals(switch.putFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0', 1, 2), 'Success')
 
     def testRemoveFlow(self):
         switch = odlSwitch.odlSwitch(self.testBaseUrl)
-        switch.putFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0', '10.0.0.1', 1, 2)
+        switch.putFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0', 1, 2)
         self.assertEquals(switch.removeFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0'), '')
 
         

@@ -42,9 +42,9 @@ class odlSwitch:
             nodeType.insert(i, mylist1['node']['type'])
         return nodeType
     
-    def putFlow(self, nodeTypes, switchIds, name, srcIp, inPort, outPort):
+    def putFlow(self, nodeTypes, switchIds, name, inPort, outPort):
         jsonData = { 
-                "installInHw":"false",
+                "installInHw":"true",
                 "name": name,
                 "node":{
                     "id":switchIds,
@@ -52,7 +52,6 @@ class odlSwitch:
                     },
                 "ingressPort": str(inPort),
                 "priority":"500",
-                "nwSrc": srcIp,
                 "actions":[
                         ("OUTPUT=" + str(outPort))
                         ]
