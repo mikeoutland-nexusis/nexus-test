@@ -4,6 +4,7 @@ Created on Nov 14, 2013
 @author: mikeoutland
 '''
 import unittest
+import socket
 from pythonOpenDayLight.openDayLight import odlSwitch
 
 
@@ -12,7 +13,11 @@ class Test(unittest.TestCase):
     defaultFlowStatJson={}
     switchList = []
     typeList = []
-    testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
+#    testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
+    if socket.gethostname() in 'ec2':
+        testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
+    else:
+        testBaseUrl = 'http://localhost:8080/controller/nb/v2/'
     
     def setUp(self):
         self.defaultFlowStatJson = {u'flowStatistics': [{u'node': {u'type': u'OF', u'id': u'00:00:00:00:00:00:00:01'}, u'flowStatistic': []}]}
