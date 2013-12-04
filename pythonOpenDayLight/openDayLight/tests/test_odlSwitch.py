@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
     defaultFlowStatJson={}
     switchList = []
     typeList = []
-    if socket.gethostname() in '187':
+    if socket.gethostname() == 'ip-10-232-26-187':
         testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
     else:
         testBaseUrl = 'http://localhost:8080/controller/nb/v2/'
