@@ -2,3 +2,4 @@
 host=ec2-54-218-177-219.us-west-2.compute.amazonaws.com
 port=29418
 project=nexus-test.git
+defaultbranch=fb-test1
