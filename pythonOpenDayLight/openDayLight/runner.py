@@ -16,10 +16,7 @@ print (data)
 print (switch.getSwitchIds(data))
 print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h1toh2', 1, 2))
 print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h2toh1', 2, 1))
-#print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h1toswitch2', 1, 2))
-#print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'switch1toh1', 2, 1))
-#print (switch.putFlow(switch.getNodeTypes(data)[1], switch.getSwitchIds(data)[1], 'h2toswitch1', 1, 2))
-#print (switch.putFlow(switch.getNodeTypes(data)[1], switch.getSwitchIds(data)[1], 'switch2toh2', 2, 1))
+
 
 #print (switch.removeFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'flow0'))
 #print (switch.removeFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'flow1'))
