@@ -28,6 +28,11 @@ print (data)
 print (switch.getSwitchIds(data))
 print (switch.putFlow(host1json))
 print (switch.putFlow(host2json))
+#print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h1toh2', 1, 2))
+#print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h2toh1', 2, 1))
+print (switch.getActiveHosts())
+print (switch.getInactiveHosts())
+
 
 
 #print (switch.removeFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'flow0'))

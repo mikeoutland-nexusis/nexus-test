@@ -18,13 +18,13 @@ class odlSwitch:
     def getFlowStatJson(self):
         return self.data
     
-    def getActiveHosts(self, restUrl, auth):
-        response = requests.get((restUrl + "hosttracker/default/hosts/active"), auth=auth)
-        return response
+    def getActiveHosts(self):
+        response = requests.get((url + "hosttracker/default/hosts/active"), auth=auth)
+        return json.loads(response.text)
 
-    def getInactiveHosts(self, restUrl, auth):
-        response = requests.get((restUrl + "hosttracker/default/hosts/inactive"), auth=auth)
-        return response
+    def getInactiveHosts(self):
+        response = requests.get((url + "hosttracker/default/hosts/inactive"), auth=auth)
+        return json.loads(response.text)
     
     def getSwitchIds(self, dataDict):
         switchId = list()

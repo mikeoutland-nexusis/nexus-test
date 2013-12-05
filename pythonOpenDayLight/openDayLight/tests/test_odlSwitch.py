@@ -5,7 +5,7 @@ Created on Nov 14, 2013
 '''
 import unittest
 import socket
-from pythonOpenDayLight.openDayLight import odlSwitch
+from pythonOpenDayLight.openDayLight import odlSwitch, odlJson
 
 
 class Test(unittest.TestCase):
@@ -13,6 +13,7 @@ class Test(unittest.TestCase):
     defaultFlowStatJson={}
     switchList = []
     typeList = []
+
     if socket.gethostname() == 'ip-10-232-26-187':
         testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
     else:
@@ -22,6 +23,13 @@ class Test(unittest.TestCase):
         self.defaultFlowStatJson = {u'flowStatistics': [{u'node': {u'type': u'OF', u'id': u'00:00:00:00:00:00:00:01'}, u'flowStatistic': []}]}
         self.switchList = [u'00:00:00:00:00:00:00:01']
         self.typeList = [u'OF']
+        self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
+        self.flow0 = odlJson.odlJson()
+        self.flow0.setInPort(1)
+        self.flow0.setOutPort(2)
+        self.flow0.setName('flow0')
+        self.flow0.setSwitchId(self.switch.getSwitchIds(self.defaultFlowStatJson)[0])
+        self.flow0.buildPutFlowJson()
         pass
 
 
@@ -39,13 +47,11 @@ class Test(unittest.TestCase):
         self.assertEquals(switch.getNodeTypes(self.defaultFlowStatJson), self.typeList)
         
     def testPutFlow(self):
-        switch = odlSwitch.odlSwitch(self.testBaseUrl)
-        self.assertEquals(switch.putFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0', 1, 2), 'Success')
+        self.assertEquals(self.switch.putFlow(self.flow0), 'Success')
 
     def testRemoveFlow(self):
-        switch = odlSwitch.odlSwitch(self.testBaseUrl)
-        switch.putFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0', 1, 2)
-        self.assertEquals(switch.removeFlow(switch.getNodeTypes(self.defaultFlowStatJson)[0], switch.getSwitchIds(self.defaultFlowStatJson)[0], 'flow0'), '')
+        self.switch.putFlow(self.flow0)
+        self.assertEquals(self.switch.removeFlow(self.flow0), '')
 
         
 if __name__ == "__main__":
