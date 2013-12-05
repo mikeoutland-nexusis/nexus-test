@@ -5,6 +5,7 @@ Created on Nov 14, 2013
 '''
 import json
 import requests
+import odlJson
 
 class odlSwitch:
     '''
@@ -25,6 +26,25 @@ class odlSwitch:
     def getInactiveHosts(self):
         response = requests.get((url + "hosttracker/default/hosts/inactive"), auth=auth)
         return json.loads(response.text)
+    
+    def getFlows(self):
+        flowList = list()
+        response = requests.get((url+ "flowprogrammer/default"), auth=auth)
+        flowData = json.loads(response.text)
+        mylist = flowData["flowConfig"]
+        for i in range(len(mylist)):
+            mylist1 = mylist[i]
+            myOdl = odlJson.odlJson(mylist1['name'])
+            myOdl.setSwitchId(mylist1['node']['id'])
+            myOdl.setSwitchType(mylist1['node']['type'])
+            flowList.insert(i, myOdl)
+        return flowList
+    
+    def removeAllFlows(self):
+        flowsList = self.getFlows()
+        for i in range(len(flowsList)):
+            self.removeFlow(flowsList[i])
+            
     
     def getSwitchIds(self, dataDict):
         switchId = list()

@@ -20,10 +20,10 @@ class Test(unittest.TestCase):
         self.switchList = [u'00:00:00:00:00:00:00:01']
         self.typeList = [u'OF']
         self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
-        self.flow0 = odlJson.odlJson()
+        self.switch.removeAllFlows()
+        self.flow0 = odlJson.odlJson('flow0')
         self.flow0.setInPort(1)
         self.flow0.setOutPort(2)
-        self.flow0.setName('flow0')
         self.flow0.setSwitchId(self.switch.getSwitchIds(self.defaultFlowStatJson)[0])
         self.flow0.buildPutFlowJson()
         pass

@@ -12,15 +12,14 @@ Created on Nov 14, 2013
 from pythonOpenDayLight.openDayLight import odlSwitch, odlJson
 
 switch = odlSwitch.odlSwitch('http://127.0.0.1:8080/controller/nb/v2/')
+switch.removeAllFlows()
 data = switch.getFlowStatJson()
-host1json = odlJson.odlJson()
-host2json = odlJson.odlJson()
+host1json = odlJson.odlJson('h1toh2')
+host2json = odlJson.odlJson('h2toh1')
 host1json.setInPort(1)
 host1json.setOutPort(2)
 host2json.setInPort(2)
 host2json.setOutPort(1)
-host1json.setName('h1toh2')
-host2json.setName('h2toh1')
 host1json.setSwitchId(switch.getSwitchIds(data)[0])
 host2json.setSwitchId(switch.getSwitchIds(data)[0])
 host1json.buildPutFlowJson()

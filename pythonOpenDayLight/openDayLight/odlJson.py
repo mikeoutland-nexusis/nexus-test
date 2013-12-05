@@ -55,8 +55,8 @@ class odlJson:
                         ]
                 }
         
-    def __init__(self):
-        self.flowName =''
+    def __init__(self, name):
+        self.flowName = name
         self.switchId = ''
         self.switchType = 'OF'
         self.inPort = 0
