@@ -42,26 +42,13 @@ class odlSwitch:
             nodeType.insert(i, mylist1['node']['type'])
         return nodeType
     
-    def putFlow(self, nodeTypes, switchIds, name, inPort, outPort):
-        jsonData = { 
-                "installInHw":"true",
-                "name": name,
-                "node":{
-                    "id":switchIds,
-                    "type": nodeTypes
-                    },
-                "ingressPort": str(inPort),
-                "priority":"500",
-                "actions":[
-                        ("OUTPUT=" + str(outPort))
-                        ]
-                }
-        requestURI = (url + 'flowprogrammer/default/node/' + nodeTypes + '/' + switchIds + '/staticFlow/' + name)
-        req = requests.put(requestURI, data = json.dumps(jsonData),  headers = {'Content-Type': 'application/json'}, auth=auth)
+    def putFlow(self, odlJson):
+        requestURI = (url + 'flowprogrammer/default/node/' + odlJson.getSwitchType() + '/' + odlJson.getSwitchId() + '/staticFlow/' + odlJson.getName())
+        req = requests.put(requestURI, data = odlJson.getJson(),  headers = {'Content-Type': 'application/json'}, auth=auth)
         return req.text
     
-    def removeFlow(self, nodeTypes, switchIds, name):
-        requestURI = (url + 'flowprogrammer/default/node/' + nodeTypes + '/' + switchIds + '/staticFlow/' + name)
+    def removeFlow(self, odlJson):
+        requestURI = (url + 'flowprogrammer/default/node/' + odlJson.getSwitchType() + '/' + odlJson.getSwitchId() + '/staticFlow/' + odlJson.getName())
         req = requests.delete(requestURI, headers = {'Content-Type': 'application/json'}, auth=auth)
         return req.text
 
