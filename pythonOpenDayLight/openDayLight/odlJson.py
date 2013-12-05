@@ -12,7 +12,6 @@ class odlJson:
     switchType = 'OF'
     inPort = 0
     outPort = 0
-    jsonData = {''}
     
     def setName(self, name):
         self.flowName = name
