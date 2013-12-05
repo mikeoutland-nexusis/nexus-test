@@ -14,8 +14,11 @@ switch = odlSwitch.odlSwitch('http://127.0.0.1:8080/controller/nb/v2/')
 data = switch.getFlowStatJson()
 print (data)
 print (switch.getSwitchIds(data))
-print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h1toh2', 1, 2))
-print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h2toh1', 2, 1))
+#print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h1toh2', 1, 2))
+#print (switch.putFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'h2toh1', 2, 1))
+print (switch.getActiveHosts())
+print (switch.getInactiveHosts())
+
 
 
 #print (switch.removeFlow(switch.getNodeTypes(data)[0], switch.getSwitchIds(data)[0], 'flow0'))
