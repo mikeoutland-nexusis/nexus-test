@@ -10,7 +10,6 @@ from pythonOpenDayLight.openDayLight import odlSwitch, odlJson
 
 class Test(unittest.TestCase):
 
-    defaultFlowStatJson={}
     switchList = []
     typeList = []
 
