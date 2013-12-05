@@ -61,4 +61,3 @@ class odlJson:
         self.switchType = 'OF'
         self.inPort = 0
         self.outPort = 0
-        self.jsonData = {''}
