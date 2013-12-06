@@ -19,11 +19,12 @@ class Test(unittest.TestCase):
         self.defaultFlowStatJson = {u'flowStatistics': [{u'node': {u'type': u'OF', u'id': u'00:00:00:00:00:00:00:01'}, u'flowStatistic': []}]}
         self.switchList = [u'00:00:00:00:00:00:00:01']
         self.typeList = [u'OF']
+        self.hostList = {u'hostConfig':[]}
         self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
         self.switch.removeAllFlows()
         self.flow0 = odlJson.odlJson('flow0')
         self.flow0.setInPort(1)
-        self.flow0.setOutPort(2)
+        self.flow0.addAction("OUTPUT=2")
         self.flow0.setSwitchId(self.switch.getSwitchIds(self.defaultFlowStatJson)[0])
         self.flow0.buildPutFlowJson()
         pass
@@ -43,11 +44,22 @@ class Test(unittest.TestCase):
         self.assertEquals(switch.getNodeTypes(self.defaultFlowStatJson), self.typeList)
         
     def testPutFlow(self):
+        self.switch.removeFlow(self.flow0)
         self.assertEquals(self.switch.putFlow(self.flow0), 'Success')
 
     def testRemoveFlow(self):
         self.switch.putFlow(self.flow0)
         self.assertEquals(self.switch.removeFlow(self.flow0), '')
+        
+    def testGetActiveHosts(self):
+        self.assertEquals(self.switch.getActiveHosts(), self.hostList)
+        
+    def testGetInactiveHosts(self):
+        self.assertEquals(self.switch.getInactiveHosts(), self.hostList)
+        
+    def testGetFlows(self):
+        self.switch.putFlow(self.flow0)
+        self.assertEqual(self.switch.getFlows()[0].getName(), self.flow0.getName())
 
         
 if __name__ == "__main__":

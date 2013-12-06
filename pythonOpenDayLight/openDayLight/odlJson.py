@@ -34,8 +34,8 @@ class odlJson:
     def setInPort(self, port):
         self.inPort = port
         
-    def setOutPort(self, port):
-        self.outPort = port
+    def addAction(self, action):
+        self.action.append(action)
         
     def getJson(self):
         return json.dumps(self.jsonData)
@@ -50,9 +50,7 @@ class odlJson:
                     },
                 "ingressPort": str(self.inPort),
                 "priority":"500",
-                "actions":[
-                        ("OUTPUT=" + str(self.outPort))
-                        ]
+                "actions":self.action
                 }
         
     def __init__(self, name):
@@ -61,3 +59,4 @@ class odlJson:
         self.switchType = 'OF'
         self.inPort = 0
         self.outPort = 0
+        self.action = list()
