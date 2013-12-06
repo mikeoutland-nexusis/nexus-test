@@ -5,7 +5,7 @@ Created on Dec 4, 2013
 '''
 import json
 
-class odlJson:
+class odlJson(object):
     
     flowName =''
     switchId = ''
@@ -37,6 +37,36 @@ class odlJson:
     def addAction(self, action):
         self.action.append(action)
         
+    def setHostId(self, hostId):
+        self.hostId = hostId
+        
+    def getHostId(self):
+        return self.hostId
+        
+    def setHostType(self, hostType):
+        self.hostType = hostType
+        
+    def getHostType(self):
+        return self.hostType
+        
+    def setVlan(self, vlan):
+        self.vlan = vlan
+        
+    def getVlan(self):
+        return self.vlan
+        
+    def setHostIp(self, hostIp):
+        self.hostIp = hostIp
+        
+    def getHostIp(self):
+        return self.hostIp
+    
+    def setNodeId(self, nodeId):
+        self.nodeId = nodeId
+        
+    def getNodeId(self):
+        return self.nodeId
+        
     def getJson(self):
         return json.dumps(self.jsonData)
     
@@ -53,10 +83,54 @@ class odlJson:
                 "actions":self.action
                 }
         
-    def __init__(self, name):
-        self.flowName = name
+    def buildPutHostJson(self):
+        self.jsonData = {
+ "dataLayerAddress":self.hostId,
+ "nodeType":self.switchType,
+ "nodeId":self.switchId,
+ "nodeConnectorType":self.hostType,
+ "nodeConnectorId":self.nodeId,
+ "vlan":self.vlan,
+ "staticHost":"true",
+ "networkAddress":self.hostIp
+}
+        
+    def __init__(self):
+        self.flowName = ''
         self.switchId = ''
         self.switchType = 'OF'
+        self.hostType = 'OF'
+        self.hostId = ''
+        self.nodeId = 1
         self.inPort = 0
-        self.outPort = 0
         self.action = list()
+        self.vlan = 1
+
+        
+    @classmethod    
+    def odlJsonFlow(cls, name):
+        obj = cls()
+        obj.flowName = name
+        obj.switchId = ''
+        obj.switchType = 'OF'
+        obj.hostType = 'OF'
+        obj.hostId = ''
+        obj.nodeId = 1
+        obj.inPort = 0
+        obj.action = list()
+        obj.vlan = 1
+        return obj
+        
+    @classmethod
+    def odlJsonHost(cls, hostIp):
+        obj = cls()
+        obj.hostIp = hostIp
+        obj.switchId = ''
+        obj.switchType = 'OF'
+        obj.hostType = 'OF'
+        obj.hostId = ''
+        obj.nodeId = 1
+        obj.inPort = 0
+        obj.action = list()
+        obj.vlan = 1
+        return obj

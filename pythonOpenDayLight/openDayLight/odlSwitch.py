@@ -34,7 +34,7 @@ class odlSwitch:
         mylist = flowData["flowConfig"]
         for i in range(len(mylist)):
             mylist1 = mylist[i]
-            myOdl = odlJson.odlJson(mylist1['name'])
+            myOdl = odlJson.odlJson.odlJsonFlow(mylist1['name'])
             myOdl.setSwitchId(mylist1['node']['id'])
             myOdl.setSwitchType(mylist1['node']['type'])
             flowList.insert(i, myOdl)
@@ -64,6 +64,11 @@ class odlSwitch:
     
     def putFlow(self, odlJson):
         requestURI = (url + 'flowprogrammer/default/node/' + odlJson.getSwitchType() + '/' + odlJson.getSwitchId() + '/staticFlow/' + odlJson.getName())
+        req = requests.put(requestURI, data = odlJson.getJson(),  headers = {'Content-Type': 'application/json'}, auth=auth)
+        return req.text
+    
+    def putHost(self, odlJson):
+        requestURI = (url + 'hosttracker/default/address/' + odlJson.getHostIp())
         req = requests.put(requestURI, data = odlJson.getJson(),  headers = {'Content-Type': 'application/json'}, auth=auth)
         return req.text
     
