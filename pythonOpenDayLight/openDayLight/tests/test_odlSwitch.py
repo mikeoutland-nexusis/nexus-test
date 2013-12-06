@@ -22,7 +22,7 @@ class Test(unittest.TestCase):
         self.hostList = {u'hostConfig':[]}
         self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
         self.switch.removeAllFlows()
-        self.flow0 = odlJson.odlJson('flow0')
+        self.flow0 = odlJson.odlJson.odlJsonFlow('flow0')
         self.flow0.setInPort(1)
         self.flow0.addAction("OUTPUT=2")
         self.flow0.setSwitchId(self.switch.getSwitchIds(self.defaultFlowStatJson)[0])
@@ -50,12 +50,6 @@ class Test(unittest.TestCase):
     def testRemoveFlow(self):
         self.switch.putFlow(self.flow0)
         self.assertEquals(self.switch.removeFlow(self.flow0), '')
-        
-    def testGetActiveHosts(self):
-        self.assertEquals(self.switch.getActiveHosts(), self.hostList)
-        
-    def testGetInactiveHosts(self):
-        self.assertEquals(self.switch.getInactiveHosts(), self.hostList)
         
     def testGetFlows(self):
         self.switch.putFlow(self.flow0)
