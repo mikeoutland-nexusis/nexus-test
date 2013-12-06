@@ -9,9 +9,15 @@ Created on Nov 14, 2013
 #    The current runner will setup a simple flow between h1 and h2 
 #  adding new flow
 
+import socket
 from pythonOpenDayLight.openDayLight import odlSwitch, odlJson
 
-switch = odlSwitch.odlSwitch('http://127.0.0.1:8080/controller/nb/v2/')
+if socket.gethostname() == 'ip-10-232-26-187':
+    testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
+else:
+    testBaseUrl = 'http://localhost:8080/controller/nb/v2/'
+
+switch = odlSwitch.odlSwitch(testBaseUrl)
 switch.removeAllFlows()
 data = switch.getFlowStatJson()
 host1json = odlJson.odlJson('h1toall')
