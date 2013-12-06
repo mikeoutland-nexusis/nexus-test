@@ -15,7 +15,7 @@ from pythonOpenDayLight.openDayLight import odlSwitch, odlJson
 
 if len(sys.argv) > 1:
     if (sys.argv[1] == "prod"):
-        testBaseUrl = 'http://ec2-54-202-78-146.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
+        testBaseUrl = 'http://ec2-54-202-188-17.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
     else:
         testBaseUrl = sys.argv[1]
 elif socket.gethostname() == 'ip-10-232-26-187':
