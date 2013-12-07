@@ -25,6 +25,9 @@ else:
 
 switch = odlSwitch.odlSwitch(testBaseUrl)
 switch.removeAllFlows()
+print (switch.getActiveHosts())
+switch.removeAllActiveHosts()
+print (switch.getActiveHosts())
 data = switch.getFlowStatJson()
 host1json = odlJson.odlJson.odlJsonFlow('h1toall')
 host2json = odlJson.odlJson.odlJsonFlow('h2toall')

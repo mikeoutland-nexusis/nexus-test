@@ -21,11 +21,30 @@ class odlSwitch:
     
     def getActiveHosts(self):
         response = requests.get((url + "hosttracker/default/hosts/active"), auth=auth)
-        return json.loads(response.text)
+        dataDict = json.loads(response.text)
+        hosts = list()
+        mylist = dataDict['hostConfig']
+        for i in range(len(mylist)):
+            mylist1 =  mylist[i]
+            myOdl = odlJson.odlJson.odlJsonHost(mylist1['networkAddress'])
+            hosts.insert(i, myOdl)
+        return hosts
 
     def getInactiveHosts(self):
         response = requests.get((url + "hosttracker/default/hosts/inactive"), auth=auth)
-        return json.loads(response.text)
+        dataDict = json.loads(response.text)
+        hosts = list()
+        mylist = dataDict['hostConfig']
+        for i in range(len(mylist)):
+            mylist1 =  mylist[i]
+            myOdl = odlJson.odlJson.odlJsonHost(mylist1['networkAddress'])
+            hosts.insert(i, myOdl)
+        return hosts
+    
+    def removeAllActiveHosts(self):
+        flowsList = self.getActiveHosts()
+        for i in range(len(flowsList)):
+            self.removeHost(flowsList[i])
     
     def getFlows(self):
         flowList = list()
@@ -76,7 +95,11 @@ class odlSwitch:
         requestURI = (url + 'flowprogrammer/default/node/' + odlJson.getSwitchType() + '/' + odlJson.getSwitchId() + '/staticFlow/' + odlJson.getName())
         req = requests.delete(requestURI, headers = {'Content-Type': 'application/json'}, auth=auth)
         return req.text
-
+    
+    def removeHost(self, odlJson):
+        requestURI = (url + 'hosttracker/default/address/' + odlJson.getHostIp())
+        req = requests.delete(requestURI, headers = {'Content-Type': 'application/json'}, auth=auth)
+        return req.text
 
     def __init__(self, baseUrl):
         '''
