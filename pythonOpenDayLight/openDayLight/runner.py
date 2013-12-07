@@ -7,6 +7,7 @@ Created on Nov 14, 2013
 #In mininet i'm using the following config:
 #    mn --topo single,3 --mac --switch ovsk --controller=remote,ip=10.0.2.2,port=6633
 #    The current runner will setup a simple flow between h1 and h2 
+#  this is a comment
 
 import socket
 import sys
