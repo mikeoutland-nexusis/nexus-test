@@ -25,6 +25,7 @@ else:
 switch = odlSwitch.odlSwitch(testBaseUrl)
 switch.removeAllFlows()
 switch.removeAllActiveHosts()
+switch.removeAllTopoLinks()
 data = switch.getFlowStatJson()
 host1json = odlJson.odlJson.odlJsonFlow('h1toall')
 host2json = odlJson.odlJson.odlJsonFlow('h2toall')
@@ -37,6 +38,9 @@ host7json = odlJson.odlJson.odlJsonFlow('s1toallsw')
 host1 = odlJson.odlJson.odlJsonHost("10.0.0.1")
 host2 = odlJson.odlJson.odlJsonHost("10.0.0.2")
 host3 = odlJson.odlJson.odlJsonHost("10.0.0.3")
+
+topo1 = odlJson.odlJson.odlJsonTopo("link1")
+topo2 = odlJson.odlJson.odlJsonTopo("link2")
 
 host1json.setSwitchId(switch.getSwitchIds(data)[0])
 host2json.setSwitchId(switch.getSwitchIds(data)[1])
@@ -103,3 +107,14 @@ host3.buildPutHostJson()
 print (switch.putHost(host1))
 print (switch.putHost(host2))
 print (switch.putHost(host3))
+
+topo1.setSrcNode(switch.getSwitchIds(data)[0])
+topo1.setDstNode(switch.getSwitchIds(data)[2])
+topo1.buildPutTopoJson()
+
+topo2.setSrcNode(switch.getSwitchIds(data)[0])
+topo2.setDstNode(switch.getSwitchIds(data)[1])
+topo2.buildPutTopoJson()
+
+print (switch.putTopo(topo1))
+print (switch.putTopo(topo2))

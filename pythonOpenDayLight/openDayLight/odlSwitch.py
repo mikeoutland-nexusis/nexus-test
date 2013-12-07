@@ -19,6 +19,22 @@ class odlSwitch:
     def getFlowStatJson(self):
         return self.data
     
+    def getTopoLinks(self):
+        response = requests.get((url + "topology/default/userLinks"), auth=auth)
+        dataDict = json.loads(response.text)
+        hosts = list()
+        mylist = dataDict['userLinks']
+        for i in range(len(mylist)):
+            mylist1 =  mylist[i]
+            myOdl = odlJson.odlJson.odlJsonTopo(mylist1['name'])
+            hosts.insert(i, myOdl)
+        return hosts
+    
+    def removeAllTopoLinks(self):
+        flowsList = self.getTopoLinks()
+        for i in range(len(flowsList)):
+            self.removeTopo(flowsList[i])
+    
     def getActiveHosts(self):
         response = requests.get((url + "hosttracker/default/hosts/active"), auth=auth)
         dataDict = json.loads(response.text)
@@ -91,6 +107,11 @@ class odlSwitch:
         req = requests.put(requestURI, data = odlJson.getJson(),  headers = {'Content-Type': 'application/json'}, auth=auth)
         return req.text
     
+    def putTopo(self, odlJson):
+        requestURI = (url + 'topology/default/userLink/' + odlJson.getTopoName())
+        req = requests.put(requestURI, data = odlJson.getJson(),  headers = {'Content-Type': 'application/json'}, auth=auth)
+        return req.text
+    
     def removeFlow(self, odlJson):
         requestURI = (url + 'flowprogrammer/default/node/' + odlJson.getSwitchType() + '/' + odlJson.getSwitchId() + '/staticFlow/' + odlJson.getName())
         req = requests.delete(requestURI, headers = {'Content-Type': 'application/json'}, auth=auth)
@@ -98,6 +119,11 @@ class odlSwitch:
     
     def removeHost(self, odlJson):
         requestURI = (url + 'hosttracker/default/address/' + odlJson.getHostIp())
+        req = requests.delete(requestURI, headers = {'Content-Type': 'application/json'}, auth=auth)
+        return req.text
+    
+    def removeTopo(self, odlJson):
+        requestURI = (url + 'topology/default/userLink/' + odlJson.getTopoName())
         req = requests.delete(requestURI, headers = {'Content-Type': 'application/json'}, auth=auth)
         return req.text
 

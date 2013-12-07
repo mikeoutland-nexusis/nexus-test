@@ -66,6 +66,24 @@ class odlJson(object):
         
     def getNodeId(self):
         return self.nodeId
+    
+    def setTopoName(self, topoName):
+        self.topoName = topoName
+        
+    def getTopoName(self):
+        return self.topoName
+    
+    def setSrcNode(self, switchMac):
+        self.srcNode = switchMac
+        
+    def getSrcNode(self):
+        return self.srcNode
+    
+    def setDstNode(self, switchMac):
+        self.dstNode = switchMac
+        
+    def getDstNode(self):
+        return self.dstNode
         
     def getJson(self):
         return json.dumps(self.jsonData)
@@ -93,6 +111,14 @@ class odlJson(object):
  "vlan":self.vlan,
  "staticHost":"true",
  "networkAddress":self.hostIp
+}
+        
+    def buildPutTopoJson(self):
+        self.jsonData = {
+"status":"Success",
+"name":self.topoName,
+"srcNodeConnector":"OF|2@OF|" + self.srcNode,
+"dstNodeConnector":"OF|2@OF|" + self.dstNode
 }
         
     def __init__(self):
@@ -128,6 +154,20 @@ class odlJson(object):
         obj.switchId = ''
         obj.switchType = 'OF'
         obj.hostType = 'OF'
+        obj.hostId = ''
+        obj.nodeId = 1
+        obj.inPort = 0
+        obj.action = list()
+        obj.vlan = 1
+        return obj
+    
+    @classmethod
+    def odlJsonTopo(cls, topoName):
+        obj = cls()
+        obj.topoName = topoName
+        obj.switchId = ''
+        obj.srcNode = ''
+        obj.dstNode = ''
         obj.hostId = ''
         obj.nodeId = 1
         obj.inPort = 0

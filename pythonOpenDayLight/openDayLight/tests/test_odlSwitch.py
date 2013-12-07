@@ -23,6 +23,7 @@ class Test(unittest.TestCase):
         self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
         self.switch.removeAllFlows()
         self.switch.removeAllActiveHosts()
+        self.switch.removeAllTopoLinks()
         self.flow0 = odlJson.odlJson.odlJsonFlow('flow0')
         self.flow0.setInPort(1)
         self.flow0.addAction("OUTPUT=2")
