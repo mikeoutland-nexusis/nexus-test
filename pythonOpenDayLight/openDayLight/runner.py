@@ -5,9 +5,8 @@ Created on Nov 14, 2013
 '''
 
 #In mininet i'm using the following config:
-#    mn --topo single,3 --mac --switch ovsk --controller=remote,ip=10.0.2.2,port=6633
+#    mn --topo linear,3 --mac --switch ovsk --controller=remote,ip=10.0.2.2,port=6633
 #    The current runner will setup a simple flow between h1 and h2 
-# change
 
 import socket
 import sys
@@ -25,9 +24,7 @@ else:
 
 switch = odlSwitch.odlSwitch(testBaseUrl)
 switch.removeAllFlows()
-print (switch.getActiveHosts())
 switch.removeAllActiveHosts()
-print (switch.getActiveHosts())
 data = switch.getFlowStatJson()
 host1json = odlJson.odlJson.odlJsonFlow('h1toall')
 host2json = odlJson.odlJson.odlJsonFlow('h2toall')
@@ -80,8 +77,6 @@ host7json.addAction("OUTPUT=1")
 host7json.addAction("OUTPUT=2")
 host7json.buildPutFlowJson()
 
-print (switch.getSwitchIds(data))
-
 print (switch.putFlow(host1json))
 print (switch.putFlow(host2json))
 print (switch.putFlow(host3json))
@@ -108,5 +103,3 @@ host3.buildPutHostJson()
 print (switch.putHost(host1))
 print (switch.putHost(host2))
 print (switch.putHost(host3))
-
-print (switch.getFlowStatJson())
