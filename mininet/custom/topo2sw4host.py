@@ -10,7 +10,7 @@ topology enables one to pass in '--topo=mytopo' from the command line.
 
 from mininet.topo import Topo
 
-class MyTopo( Topo ):
+class TwoSwFourHostTopo( Topo ):
     "Simple topology example."
 
     def __init__( self ):
@@ -21,14 +21,18 @@ class MyTopo( Topo ):
 
         # Add hosts and switches
         leftHost = self.addHost( 'h1' )
-        rightHost = self.addHost( 'h2' )
-        leftSwitch = self.addSwitch( 's3' )
-        rightSwitch = self.addSwitch( 's4' )
+        rightHost = self.addHost( 'h3' )
+        leftHost1 = self.addHost( 'h2' )
+        rightHost1 = self.addHost( 'h4' )
+        leftSwitch = self.addSwitch( 's1' )
+        rightSwitch = self.addSwitch( 's2' )
 
         # Add links
         self.addLink( leftHost, leftSwitch )
+        self.addLink( leftHost1, leftSwitch )
         self.addLink( leftSwitch, rightSwitch )
         self.addLink( rightSwitch, rightHost )
+        self.addLink( rightSwitch, rightHost1 )
 
 
-topos = { 'mytopo': ( lambda: MyTopo() ) }
+topos = { 'TwoSwFourHostTopo': ( lambda: TwoSwFourHostTopo() ) }
