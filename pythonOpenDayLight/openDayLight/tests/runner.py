@@ -1,9 +1,10 @@
-'''
+e'''
 Created on Nov 14, 2013
 
 @author: mikeoutland
 '''
 
+# --Colin - I think I may have duplicated this accidentally. please confirm in our next standup
 #In mininet i'm using the following config:
 #    mn --custom custom/topo3Sw2HostPer.py --topo ThreeSwTwoHostPerTopo --mac --switch ovsk --controller=remote,ip=10.0.2.2,port=6633
 
@@ -30,11 +31,11 @@ data = switch.getFlowStatJson()
 flow1json = odlJson.odlJson.odlJsonFlow('h1toh2s2')
 flow2json = odlJson.odlJson.odlJsonFlow('h2toh1s2')
 flow3json = odlJson.odlJson.odlJsonFlow('h3tos1')
-#flow4json = odlJson.odlJson.odlJsonFlow('h4tos3')
+flow4json = odlJson.odlJson.odlJsonFlow('h4tos3')
 flow5json = odlJson.odlJson.odlJsonFlow('h5toh6s2')
 flow6json = odlJson.odlJson.odlJsonFlow('h6toh5s2')
 flow7json = odlJson.odlJson.odlJsonFlow('s1toh3')
-#flow8json = odlJson.odlJson.odlJsonFlow('s3toh4')
+flow8json = odlJson.odlJson.odlJsonFlow('s3toh4')
 flow9json = odlJson.odlJson.odlJsonFlow('s2toh1h2')
 flow10json = odlJson.odlJson.odlJsonFlow('s2toh5h6')
 
@@ -134,11 +135,11 @@ host3.setNodeId(1)
 host3.setVlan(1)
 host3.buildPutHostJson()
 
-#host4.setHostId('00:00:00:00:01:04')
-#host4.setSwitchId(switch.getSwitchIds(data)[0])
-#host4.setNodeId(2)
-#host4.setVlan(2)
-#host4.buildPutHostJson()
+host4.setHostId('00:00:00:00:01:04')
+host4.setSwitchId(switch.getSwitchIds(data)[0])
+host4.setNodeId(2)
+host4.setVlan(2)
+host4.buildPutHostJson()
 
 host5.setHostId('00:00:00:00:01:05')
 host5.setSwitchId(switch.getSwitchIds(data)[1])
