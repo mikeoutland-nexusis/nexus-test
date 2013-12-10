@@ -10,7 +10,7 @@ fi
 ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=false $2 "export TERM=xterm-256color && /home/ubuntu/runPingTest.sh $1 h1 h3"
 sleep 2
 echo $?
-iif [ "$?" -ne "0" ]
+if [ "$?" -ne "0" ]
 then
 	exit 1
 fi
