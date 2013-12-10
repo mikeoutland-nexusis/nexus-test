@@ -1,0 +1,37 @@
+Project Denica Overview
+Project Details
+Why use Denica?
+In the new world of Software Defined Networks (SDN), one change in one file can either add new functionality to thousands of hosts at once, or in one fell swoop destroy a service that these hosts depend on.  Fundamentally you now manage your networks, systems and storage as source code. These means that to be successful you must use modern software development tools and methodologies in day to day IT Operations.
+What is the core concept of Denica
+Project Denica takes the core tools and concepts used in modern application development environments, and applies them to solve the problem statement of managing the modern Software Defined IT Infrastructure. 
+Core concepts of modern Application Development applied to SDN 
+Quality 
+Each network change is submitted with a test that validates its proposed functionality, as well as tests how this change will affect prior functionality of the network, systems and applications deployed with it. Every network change submitted through Denica is tested, and logged before it is put into production.
+Velocity
+Each testing and deployment stage runs in mere seconds compared to hours in a traditional network lab environment.
+Governance
+Denica allows integration into ITSM and ITIL methodologies by proving logging all steps in the test, validation and deployment of your network code as well as providing an approval step that integrates into most companies existing change control procedures. This combined with Nexus Business Process Optimization services allows you to have the flexibility of SDN, while increasing regulatory and operational model compliance.
+Alignment 
+Denica provides a workflow that aligns modern SDN tools with existing IT operational process’s. More importantly it also provides the ability to start providing software based IT services to modern app development teams.
+
+Target Market.
+Service Providers 
+Most service providers are in the middle of a bit pipe to cloud services transition. Key to this is the ability to rapidly prototype and deploy services. These services include both classic network virtualized functions, as well as other cloud services. Denica shortens their time to bring valuable customer facing services to market.
+Enterprises
+Large enterprises generally have very complex networks that can benefit from programatic deployment and management. What they don’t however have is an Agile operating model and tools that support the operation of an enterprise network with modern software development methodologies. Secondarily, many enterprise customer have development teams that have already gone Agile. Denica provides a toolset that can help IT organizations learn the skills, processes and technologies used in modern application development.
+Commercial 
+Most commercial customers consume applications, vs create applications. They can however have large and complex networks. The value of SDN can be clearly applied, but only with the addition of tools and methods that are foreign to them. Project Denica allows them to benefit from the flexibility of SDN, while removing the burden of managing the complex systems necessary to successfully manage it.
+
+Nexus Solution Pull Through
+Consulting Services
+The first thing that Project Denica pulls through is consulting services. These services include DevOps consulting services, BPO services, as well as services to set up and maintain on premise CI systems. 
+Hardware Attach
+The largest value of Project Denica is it’s ability to attach large amounts of SDN enabled hardware (Cisco / Insieme Nexus 9000  and UCS primarily) 
+MRR services
+Project Denica itself is an externally hosted service that can be sold in a MRR model. It can also be tied to existing managed services sales.
+
+Nexus Value Prop
+One Partner, Every AT
+We have a brand of one partner to buy from, that covers every value proposition. The reality is that modern network engineer (SDN and Cloud Platforms) is no longer focused on IETF, IEEE and T.11 protocols that we have built our business on in the past. Now the integration is in OpenCloud and SDN platforms. Project Denica allows customers to exist in both worlds. Nexus is there to help with both the advanced SDN space, as well as the existing systems that need to be integrated into your network today.
+This is only the beginning 
+The evolution of the partner value statement now includes OpenSource and Tranformative technologies like SDN. Project Denica is the first iteration of a list of services and products to help customers through this transition
