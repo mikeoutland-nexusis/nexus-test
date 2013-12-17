@@ -4,15 +4,18 @@ Created on Nov 14, 2013
 @author: mikeoutland
 '''
 import unittest
-import socket
+import sys
 from pythonOpenDayLight.openDayLight import odlSwitch, odlJson
 
 
 class Test(unittest.TestCase):
 
-    if socket.gethostname() == 'ip-10-232-26-187':
-        testBaseUrl = 'http://ec2-54-245-68-94.us-west-2.compute.amazonaws.com:8080/controller/nb/v2/'
-    else:
+    try:
+        if "amazonaws" in sys.argv[1]:
+            testBaseUrl = sys.argv[1]
+        else:
+            testBaseUrl = 'http://localhost:8080/controller/nb/v2/'
+    except IndexError:
         testBaseUrl = 'http://localhost:8080/controller/nb/v2/'
     
     def setUp(self):
@@ -20,6 +23,7 @@ class Test(unittest.TestCase):
         self.switchList = [u'00:00:00:00:00:00:00:01']
         self.typeList = [u'OF']
         self.hostList = u'10.0.0.1'
+        print(self.testBaseUrl)
         self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
         self.switch.removeAllFlows()
         self.switch.removeAllActiveHosts()
@@ -72,4 +76,10 @@ class Test(unittest.TestCase):
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testGetSwitchIds']
-    unittest.main()
+    try:
+        if not "amazonaws" in sys.argv[1]:
+            unittest.main()
+        else:
+            unittest.main(argv=[sys.argv[1]])
+    except IndexError:
+        unittest.main()
