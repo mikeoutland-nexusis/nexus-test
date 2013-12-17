@@ -23,7 +23,6 @@ class Test(unittest.TestCase):
         self.switchList = [u'00:00:00:00:00:00:00:01']
         self.typeList = [u'OF']
         self.hostList = u'10.0.0.1'
-        print(self.testBaseUrl)
         self.switch = odlSwitch.odlSwitch(self.testBaseUrl)
         self.switch.removeAllFlows()
         self.switch.removeAllActiveHosts()
