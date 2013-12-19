@@ -6,7 +6,6 @@ Created on Nov 14, 2013
 
 #In mininet i'm using the following config:
 #    mn --custom custom/topo3Sw2HostPer.py --topo ThreeSwTwoHostPerTopo --mac --switch ovsk --controller=remote,ip=10.0.2.2,port=6633
-# added a comment for demo
 
 import socket
 import sys
